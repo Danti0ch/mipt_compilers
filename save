@@ -1,0 +1,33 @@
+Program 
+	SimpleFunc 
+		Body: 
+			PrintCall 
+				ConstExpr 5
+			LetStatement 
+				Ident a
+			AssignStatement 
+				Ident a
+				ConstExpr 6
+			CondStatement 
+				EqExpr is: 
+					MulExpr is: 
+						ConstExpr 2
+						ConstExpr 3
+					Ident a
+				LocalBody: 
+					PrintCall 
+						ConstExpr 6
+			LoopStatement 
+				MoreExpr is: 
+					Ident a
+					ConstExpr 0
+				LocalBody: 
+					PrintCall 
+						Ident a
+					AssignStatement 
+						Ident a
+						SubExpr is: 
+							Ident a
+							ConstExpr 1
+			LetStatement 
+				ConstExpr 1
