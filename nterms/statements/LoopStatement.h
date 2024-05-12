@@ -21,6 +21,11 @@ class LoopStatement : public LocalStatement {
         return res;
     }
 
+    DEFINE_ACCEPT
+
+    BoolExpr* cond() { return cond_; }
+    LocalBody* stmts() { return stmts_; }
+
  private:
    BoolExpr* cond_;
    LocalBody* stmts_;

@@ -12,6 +12,11 @@ class AssignStatement : public LocalStatement {
       driver.assign_var(ident_->name(), val);
       return 0;
     }
+
+    DEFINE_ACCEPT
+
+    Ident* ident() { return ident_; }
+    Expr* expr() { return expr_; }
  private:
     Ident* ident_;
     Expr* expr_;

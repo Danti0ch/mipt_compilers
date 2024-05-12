@@ -1,5 +1,6 @@
 #pragma once
 
+#include "BaseElem.h"
 #include "Statement.h"
 
 #include <vector>
@@ -7,11 +8,11 @@
 #include <iostream>
 class Driver;
 
-class Body {
+class Body : BaseElem {
  public:
    void AddStatement(Statement* statement)
       {     statements_.push_back(statement); }
-   int eval(Driver& driver) const {
+   int eval(Driver& driver) const override {
       int ret = 0;
 
       for (Statement* st : statements_) {
@@ -24,12 +25,15 @@ class Body {
       return 0;
     }
    
+   DEFINE_ACCEPT
+
+   std::vector<Statement*>& statements() { return statements_; }
  private:
     std::vector<Statement*> statements_;
 };
 
 
-class LocalBody {
+class LocalBody : BaseElem {
  public:
 
    LocalBody() :
@@ -38,7 +42,7 @@ class LocalBody {
    void AddStatement(LocalStatement* statement)
       {     statements_.push_back(statement); }
    
-   int eval(Driver& driver) const {
+   int eval(Driver& driver) const override {
       int ret = 0;
 
       for (LocalStatement* st : statements_) {
@@ -49,6 +53,9 @@ class LocalBody {
       return ret;
     }
    
+   DEFINE_ACCEPT
+
+   std::vector<LocalStatement*>& statements() { return statements_; }
  private:
     std::vector<LocalStatement*> statements_;
 };

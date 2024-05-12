@@ -11,7 +11,9 @@ class Ident : public Expr {
  public:
     Ident(const std::string& name) : name_(name) {}
     std::string name() const { return name_; }
-    int eval(Driver& driver) const { return driver.lookup_var(name_); }
+    int eval(Driver& driver) const override { return driver.lookup_var(name_); }
+    
+    DEFINE_ACCEPT
  private:
     std::string name_;
 };

@@ -25,7 +25,10 @@ class Driver {
 
     void print(int val) const;
     void throw_error(ErrorType type) const;
-   
+
+    int Evaluate();
+    void PrintTree(const std::string& filename);
+
     std::map<std::string, int> assigned_vars;
     std::set<std::string> declared_vars;
     int result;

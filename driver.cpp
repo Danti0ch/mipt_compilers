@@ -1,6 +1,9 @@
 #include "driver.hh"
 #include "parser.hh"
 
+#include "visitors/Interpreter.h"
+#include "visitors/PrintVisitor.h"
+
 
 
 Driver::Driver() :
@@ -84,3 +87,12 @@ void Driver::scan_end()
     stream.close();
 }
 
+int Driver::Evaluate() {
+    Interpreter interpreter;
+    return interpreter.GetResult(program);
+}
+
+void Driver::PrintTree(const std::string& filename) {
+    SymbolTreeVisitor visitor(filename);
+    visitor.Visit(program);
+}

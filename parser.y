@@ -10,39 +10,8 @@
     #include <string>
     class Scanner;
     class Driver;
-    class Program;
-    class SimpleFunc;
-    class Body;
-    class Statement;
-    class LetStatement;
-    class FormStatement;
-    class PrintCall;
-    class CondStatement;
-    class LoopStatement;
-    class LocalBody;
-    class Func;
-    class LocalStatement;
-
-    class Expr;
-    class BoolExpr;
-    class AndExpr;
-    class OrExpr;
-    class EqExpr;
-    class NEqExpr;
-    class LessExpr;
-    class ELessExpr;
-    class MoreExpr;
-    class EMoreExpr;
-
-    class ConstExpr;
-    class Ident;
-
-    class ArithmExpr;
-    class ModExpr;
-    class MulExpr;
-    class DivExpr;
-    class AddExpr;
-    class SubExpr;
+    
+    #include "nterms/forward_decl.h"
 }
 
 // %param { Driver &drv }

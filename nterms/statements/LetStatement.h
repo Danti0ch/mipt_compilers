@@ -10,6 +10,10 @@ class LetStatement : public Statement {
       // driver.add_var(ident_->name());
       return 0;
     }
+
+    DEFINE_ACCEPT
+
+    Ident* ident() { return ident_; }
  private:
    Ident* ident_;
 };

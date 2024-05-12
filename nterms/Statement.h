@@ -1,14 +1,10 @@
 #pragma once
 
+#include "BaseElem.h"
 class Driver;
 
-class Statement {
- public:
-    virtual int eval(Driver& driver) const = 0;
-  static int ret_flag;
+class Statement : public BaseElem {
+ public: static int ret_flag;
 };
 
-class LocalStatement : public Statement {
- public:
-    virtual int eval(Driver& driver) const = 0;
-};
+class LocalStatement : public Statement {};

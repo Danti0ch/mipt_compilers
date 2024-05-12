@@ -12,6 +12,10 @@ class FormStatement : public LocalStatement {
 
       return res;
     }
+
+    DEFINE_ACCEPT
+
+    Expr* expr() { return expr_; }
  private:
     Expr* expr_;
 };

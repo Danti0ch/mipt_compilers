@@ -1,8 +1,6 @@
 #pragma once
 
+#include "BaseElem.h"
 class Driver;
 
-class Func {
- public:
-    virtual int eval(Driver& driver) const = 0;
-};
+class Func : public BaseElem {};

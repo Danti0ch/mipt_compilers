@@ -1,36 +1,49 @@
-project(ParserExampleWithAst)
+project(Visitor)
 set(
     HEADERS
     driver.hh
     parser.hh
     )
+
 find_package(BISON)
 find_package(FLEX)
 
 BISON_TARGET(
-    MyParserWithAst
+    ParserVisitor
     parser.y
-    ${ParserExampleWithAst_SOURCE_DIR}/parser.cpp
-    DEFINES_FILE ${ParserExampleWithAst_SOURCE_DIR}/parser.hh
+    ${Visitor_SOURCE_DIR}/parser.cpp
+    COMPILE_FLAGS --graph
+    DEFINES_FILE ${Visitor_SOURCE_DIR}/parser.hh
 )
 
 FLEX_TARGET(
-    MyScannerWithAst
+    ScannerVisitor
     scanner.l
-    ${ParserExampleWithAst_SOURCE_DIR}/scanner.cpp
+    ${Visitor_SOURCE_DIR}/scanner.cpp
 )
 
-ADD_FLEX_BISON_DEPENDENCY(MyScannerWithAst MyParserWithAst)
+ADD_FLEX_BISON_DEPENDENCY(ScannerVisitor ParserVisitor)
 
 add_executable(
-    ParserExampleWithAst
+    VisitorExecutable
     main.cpp
     driver.cpp
-    ${BISON_MyParserWithAst_OUTPUTS}
-    ${FLEX_MyScannerWithAst_OUTPUTS}
+    ${BISON_ParserVisitor_OUTPUTS}
+    ${FLEX_ScannerVisitor_OUTPUTS}
     nterms/Statement.cpp
+    visitors/Interpreter.cpp
+    visitors/PrintVisitor.cpp
 )
 
 target_include_directories(
-    ParserExampleWithAst PRIVATE ${ParserExampleWithAst_SOURCE_DIR}
+    VisitorExecutable PRIVATE ${Visitor_SOURCE_DIR}
 )
+
+add_custom_target(
+    VisitorTree
+    COMMAND dot -Tpng ${Visitor_SOURCE_DIR}/parser.gv -o ${Visitor_SOURCE_DIR}/parser.png
+    
+    DEPENDS ${Visitor_SOURCE_DIR}/parser.cpp
+)
+
+add_dependencies(VisitorExecutable VisitorTree)

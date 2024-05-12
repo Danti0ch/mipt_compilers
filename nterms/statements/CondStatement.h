@@ -25,6 +25,11 @@ class CondStatement : public LocalStatement {
         return res;
     }
 
+    DEFINE_ACCEPT
+
+    BoolExpr* cond() { return cond_; }
+    LocalBody* stmts() { return stmts_; }
+    LocalBody* else_stmts() { return else_stmts_; }
  private:
    BoolExpr* cond_;
    LocalBody* stmts_;

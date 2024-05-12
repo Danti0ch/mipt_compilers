@@ -15,6 +15,10 @@ class PrintCall : public LocalStatement {
 
         return 0;
     }
+
+    DEFINE_ACCEPT
+
+    Expr* expr() { return expr_; }
  private:
    Expr* expr_;
 };

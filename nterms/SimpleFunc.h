@@ -1,5 +1,6 @@
 #pragma once
 
+#include "BaseElem.h"
 #include "Func.h"
 #include "Body.h"
 
@@ -9,6 +10,10 @@ class SimpleFunc: public Func {
    
     int eval(Driver& driver) const override
       { return body_->eval(driver); }
+
+   DEFINE_ACCEPT
+
+    Body* body() { return body_; }
  private:
     Body* body_;
 };
